@@ -1,14 +1,18 @@
 <template>
-<div id="app">
-  <div><video ref="video" id="video" width="640" height="480" autoplay></video></div>
-  <div><button id="snap" v-on:click="capture()">Snap Photo</button></div>
-  <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
-  <ul>
-    <li class="capture" v-for="c in captures" v-bind:key="c.d">
-      <img v-bind:src="c" height="50" />
-    </li>
-  </ul>
-</div>
+    <div id="app">
+        <div>
+            <video ref="video" id="video" width="500" height="500" autoplay></video>
+            <div>
+                <button color="info" id="snap" v-on:click="capture()">Snap Photo</button>
+            </div>
+            <canvas ref="canvas" id="canvas" width="500" height="500"></canvas>
+            <ul>
+                <li class="capture" v-for="c in captures" v-bind:key="c.d">
+                    <img v-bind:src="c" height="50" />
+                </li>
+            </ul>
+        </div>
+    </div>
 </template>
 <script>
 export default {
