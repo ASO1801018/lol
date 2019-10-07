@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="fice">
         <div>
             <video ref="video" id="video" width="500" height="500" autoplay></video>
             <div>
@@ -28,13 +28,13 @@ export default {
     this.video = this.$refs.video
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        this.video.src = window.URL.createObjectURL(stream)
+        this.video.srcObject = stream
         this.video.play()
       })
     }
   },
   methods: {
-    capture: function () {
+    capture () {
       this.canvas = this.$refs.canvas
       this.canvas.getContext('2d').drawImage(this.video, 0, 0, 500, 500)
       this.captures.push(this.canvas.toDataURL('image/png'))
@@ -44,22 +44,11 @@ export default {
 }
 </script>
 <style>
-  body: {
-    background-color: #F0F0F0;
-  }
-  #app {
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-  #video {
-    background-color: #000000;
-  }
-  #canvas {
-    display: none;
-  }
-  li {
-    display: inline;
-    padding: 5px;
-  }
+    #canvas {
+        display: none;
+    }
+    .capture {
+        /* display: inline; */
+        padding: 5px;
+    }
 </style>
