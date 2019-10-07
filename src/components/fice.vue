@@ -45,7 +45,6 @@ export default {
 </script>
 <style>
     #canvas {
-        display: none;
     }
     .capture {
         /* display: inline; */
