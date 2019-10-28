@@ -18,11 +18,20 @@
 
 <script>
 const AWS = require('aws-sdk')
-AWS.Config({
-  accessKeyId: 'AKIARNMK4HDSMJG4Z5FQ',
-  secretAccessKey: 'jqKAnqkljzSJQuqnrDWw29dgcBZqOs9mCXqJiw7+',
-  region: 'us-east-1'
-})
+function AnonLog () {
+  // Configure the credentials provider to use your identity pool
+  AWS.config.region = 'us-east-1' // Region
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: '294eb84a-c7f9-4635-8f09-1f4cfea89025'
+  })
+  // Make the call to obtain credentials
+  AWS.config.credentials.get(function () {
+    // Credentials will be available when this function is called.
+    var accessKeyId = AWS.config.credentials.accessKeyId
+    var secretAccessKey = AWS.config.credentials.secretAccessKey
+    var sessionToken = AWS.config.credentials.sessionToken
+  })
+}
 
 function DetectFaces (imageData) {
   AWS.region = 'us-east-1'
@@ -50,6 +59,7 @@ function DetectFaces (imageData) {
     }
   })
 }
+
 export default {
   name: 'face',
   data () {
