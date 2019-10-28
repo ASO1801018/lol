@@ -55,11 +55,11 @@ function AnonLog () {
   AWS.config.credentials.get(function () {
     // Credentials will be available when this function is called.
     let accessKeyId = AWS.config.credentials.accessKeyId
-    console.log(accessKeyId);
+    console.log(accessKeyId)
     let secretAccessKey = AWS.config.credentials.secretAccessKey
-    console.log(secretAccessKey);
+    console.log(secretAccessKey)
     let sessionToken = AWS.config.credentials.sessionToken
-    console.log(sessionToken);
+    console.log(sessionToken)
   })
 }
 export default {
