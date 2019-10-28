@@ -22,13 +22,13 @@ const AWS = require('aws-sdk')
 function DetectFaces (imageData) {
   AWS.region = 'us-east-1'
   let rekognition = new AWS.Rekognition()
-  let params
-  params = {
+  let params = {
     Image: {
       Bytes: imageData
     },
-    'MaxLabels': 10,
-    'MinConfidence': 77
+    Attributes: [
+      'ALL'
+    ]
   }
   rekognition.detectFaces(params, function (err, data) {
     if (err) console.log(err, err.stack) // an error occurred
