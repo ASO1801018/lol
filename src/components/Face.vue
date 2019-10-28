@@ -82,7 +82,7 @@ export default {
       this.canvas.getContext('2d').drawImage(this.video, 0, 0, 500, 500)
       this.captures.push(this.canvas.toDataURL('image/png'))
       console.log(this.captures)
-      DetectFaces(this.captures)
+      DetectFaces(this.captures[0])
     }
   }
 }
