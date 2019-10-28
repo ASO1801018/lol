@@ -41,6 +41,7 @@ function DetectFaces (imageData) {
       }
       table += '</table>'
       document.getElementById('opResult').innerHTML = table
+      console.log(table)
     }
   })
 }
