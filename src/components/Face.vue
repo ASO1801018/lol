@@ -47,7 +47,7 @@ function DetectFaces (imageData) {
 }
 function AnonLog () {
   // Configure the credentials provider to use your identity pool
-  AWS.config.region = 'us-east-1'// Region
+  AWS.config.region = 'us-east-1'
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: '294eb84a-c7f9-4635-8f09-1f4cfea89025'
   })
@@ -55,8 +55,11 @@ function AnonLog () {
   AWS.config.credentials.get(function () {
     // Credentials will be available when this function is called.
     let accessKeyId = AWS.config.credentials.accessKeyId
+    console.log(accessKeyId);
     let secretAccessKey = AWS.config.credentials.secretAccessKey
+    console.log(secretAccessKey);
     let sessionToken = AWS.config.credentials.sessionToken
+    console.log(sessionToken);
   })
 }
 export default {
