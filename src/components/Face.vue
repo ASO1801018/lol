@@ -22,13 +22,13 @@ const AWS = require('aws-sdk')
 function DetectFaces (imageData) {
   AWS.region = 'us-east-1'
   let rekognition = new AWS.Rekognition()
-  let params = {
+  let params
+  params = {
     Image: {
       Bytes: imageData
     },
-    Attributes: [
-      'ALL'
-    ]
+    'MaxLabels': 10,
+    'MinConfidence': 77
   }
   rekognition.detectFaces(params, function (err, data) {
     if (err) console.log(err, err.stack) // an error occurred
@@ -47,7 +47,7 @@ function DetectFaces (imageData) {
 }
 function AnonLog () {
   // Configure the credentials provider to use your identity pool
-  AWS.config.region = 'us-east-1' // Region
+  AWS.config.region = 'us-east-1'// Region
   AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: '294eb84a-c7f9-4635-8f09-1f4cfea89025'
   })
