@@ -2,9 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import LP from '@/components/LP'
-import fice from '@/components/fice'
+import face from '@/components/Face'
 Vue.use(Router)
-
 export default new Router({
   routes: [
     {
@@ -18,9 +17,9 @@ export default new Router({
       component: LP
     },
     {
-      path: '/fice',
-      name: 'fice',
-      component: fice
+      path: '/face',
+      name: 'face',
+      component: face
     }
   ]
 })
