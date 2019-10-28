@@ -18,7 +18,7 @@
 
 <script>
 const AWS = require('aws-sdk')
-AWS.Config.update({
+AWS.Config({
   accessKeyId: 'AKIARNMK4HDSMJG4Z5FQ',
   secretAccessKey: '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',
   region: 'us-east-1'
