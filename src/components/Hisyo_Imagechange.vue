@@ -75,7 +75,7 @@ export default {
         character_id: this.character_id
       }
       const jsondata = JSON.stringify(data)
-      fetch('http://ec2-18-177-93-10.ap-northeast-1.compute.amazonaws.com/assignDB/briefing_update.php', {
+      fetch('http://ec2-18-177-93-10.ap-northeast-1.compute.amazonaws.com/assignDB/student/character_update.php', {
         method: 'POST',
         body: jsondata,
         headers: {
