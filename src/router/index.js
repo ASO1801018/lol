@@ -1,25 +1,43 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import LP from '@/components/LP'
-import face from '@/components/Face'
+import home from '@/components/home'
+import account from '@/components/account'
+import signin from '@/components/signin'
+import accountchange from '@/components/accountchange'
+import schedulecheck from '@/components/schedulecheck'
+import test from '@/components/test'
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'home',
+      component: home
     },
     {
-      path: '/lp',
-      name: 'LP',
-      component: LP
+      path: '/account',
+      name: 'account',
+      component: account
     },
     {
-      path: '/face',
-      name: 'face',
-      component: face
+      path: '/signin',
+      name: 'sigunin',
+      component: signin
+    },
+    {
+      path: '/accountchange',
+      name: 'accountchange',
+      component: accountchange
+    },
+    {
+      path: '/schedulecheck',
+      name: 'schedulecheck',
+      component: schedulecheck
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
     }
   ]
 })
