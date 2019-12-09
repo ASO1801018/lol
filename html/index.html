@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Proofreading</title>
+    <!--    <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./proofreading.js"></script>
+    <script type="text/javascript" src="./cloud_vision_api.js"></script>
+</head>
+<body>
+
+<p>自己PR文の写真を読み込む</p>
+
+<form>
+    <input type="file" onchange="fileget(this);">
+    <br>
+    <textarea id="main_text" name="post_sentence" rows="10" cols="60" placeholder="ここに写真から取り込んだテキストが入力されます"></textarea>
+    <input id="btnsend" type="button" value="送信">
+</form>
+
+<p>取得状況:<span id="span1"></span></p>
+<p>入力した文章:<span id="text_input"></span></p>
+<p>添削した文章:<span id="text_proofreading"></span></p>
+
+</body>
+</html>

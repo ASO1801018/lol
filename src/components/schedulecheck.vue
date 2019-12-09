@@ -2,9 +2,9 @@
     <div class="check" style="color: gray;">
         <p style="font-size: large; margin: 10%">スケジュール確認</p>
         <div class="select">
-        <img class="sankaku2" src="../assets/sankaku2.png" v-on:click="nextday">
+        <img class="sankaku2" src="../assets/sankaku2.png" v-on:click="yesterday">
         <a class="day" ref="day">{{day}}</a>
-        <img class="sankaku1" src="../assets/sankaku1.png" v-on:click="yesterday">
+        <img class="sankaku1" src="../assets/sankaku1.png" v-on:click="nextday">
         </div>
         <div align="center">
         <table>
@@ -16,7 +16,7 @@
             </thead>
             <tbody>
             <!-- [1] ここに <tr> で ToDo の要素を1行づつ繰り返し表示したい -->
-            <tr v-for="item in datas" v-bind:key="item.id">
+            <tr v-for="item in newdata" v-bind:key="item.id">
                 <!-- 要素の情報 -->
                 <td>{{ item.nittei }}</td>
                 <td>{{ item.naiyou }}</td>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+/* eslint-disable eqeqeq */
 export default {
   name: 'schedulecheck',
   data () {
@@ -37,14 +38,18 @@ export default {
       nittei: '日程',
       naiyou: '内容',
       datas: [],
-      nowdata: [],
+      newdata: [],
       dataid: '0',
       date: 0
     }
   },
   created () {
+    this.newdata = []
     let today = new Date()
-    this.day = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+    let year = today.getFullYear()
+    let month = ('0' + (today.getMonth() + 1)).slice(-2)
+    let day = ('0' + today.getDate()).slice(-2)
+    this.day = year + '-' + month + '-' + day
     let schedule = this
     // ページ読み込み時に実行したい処理   今作りかけ
     fetch('http://ec2-18-177-93-10.ap-northeast-1.compute.amazonaws.com/assignDB/all_post.php')
@@ -67,19 +72,44 @@ export default {
   },
   methods: {
     nextday: function (e) {
+      this.newdata = []
       let today = new Date()
       this.date++
-      today.setDate(today.getDate() + this.date)
-      this.day = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      today.setDate((today.getDate() + this.date))
+      let year = today.getFullYear()
+      let month = ('0' + (today.getMonth() + 1)).slice(-2)
+      let day = ('0' + today.getDate()).slice(-2)
+      this.day = year + '-' + month + '-' + day
+      console.log(this.day)
+      console.log(this.datas[1]['hiduke'])
       for (let i in this.datas) {
-        console.log(this.datas[i]['nittei'])
+        if (this.datas[i]['hiduke'] === this.day) {
+          this.newdata.push({
+            id: i,
+            nittei: this.datas[i]['nittei'],
+            naiyou: this.datas[i]['naiyou']
+          })
+        }
       }
     },
     yesterday: function (e) {
+      this.newdata = []
       let today = new Date()
       this.date--
       today.setDate(today.getDate() + this.date)
-      this.day = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+      let year = today.getFullYear()
+      let month = ('0' + (today.getMonth() + 1)).slice(-2)
+      let day = ('0' + today.getDate()).slice(-2)
+      this.day = year + '-' + month + '-' + day
+      for (let i in this.datas) {
+        if (this.datas[i]['hiduke'] === this.day) {
+          this.newdata.push({
+            id: i,
+            nittei: this.datas[i]['nittei'],
+            naiyou: this.datas[i]['naiyou']
+          })
+        }
+      }
     }
   }
 }
