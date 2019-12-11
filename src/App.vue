@@ -5,11 +5,11 @@
       <label for="cp_toggle01"><span></span></label>
       <div class="cp_menu" style="z-index: 99">
         <ul>
-          <li><a href="#/account">アカウント管理</a></li>
-          <li><a href="#">秘書キャラ画像変更</a></li>
-          <li><a href="#">説明会一覧（登録・確認）</a></li>
-          <li><a href="#/schedulecheck">スケジュール確認</a></li>
-          <li><a href="#">文書チェック</a></li>
+          <li><a href="/account">アカウント管理</a></li>
+          <li><a href="/Hisyo">秘書キャラ画像変更</a></li>
+          <li><a href="/Briefing">説明会一覧（登録・確認）</a></li>
+          <li><a href="/schedulecheck">スケジュール確認</a></li>
+          <li><a href="">文書チェック</a></li>
         </ul>
       </div>
     </div>
