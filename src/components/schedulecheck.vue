@@ -2,9 +2,11 @@
     <div class="check" style="color: gray;">
         <p style="font-size: large; margin: 10%">スケジュール確認</p>
         <div class="select">
+            <img class="sankaku4" src="../assets/sankaku4.png" v-on:click="lastmonth">
             <img class="sankaku2" src="../assets/sankaku2.png" v-on:click="yesterday">
             <a class="day" ref="day">{{day}}</a>
             <img class="sankaku1" src="../assets/sankaku1.png" v-on:click="nextday">
+            <img class="sankaku3" src="../assets/sankaku3.png" v-on:click="nextmonth">
         </div>
         <div align="center">
             <table>
@@ -38,7 +40,8 @@ export default {
       datas: [],
       newdata: [],
       dataid: '0',
-      date: 0
+      date: 0,
+      month: 0
     }
   },
   created () {
@@ -108,6 +111,48 @@ export default {
           })
         }
       }
+    },
+    nextmonth: function (e) {
+      this.newdata = []
+      let today = new Date()
+      this.month++
+      today.setDate((today.getDate() + this.date))
+      today.setMonth(today.getMonth() + this.month)
+      let year = today.getFullYear()
+      let month = ('0' + (today.getMonth() + 1)).slice(-2)
+      let day = ('0' + today.getDate()).slice(-2)
+      this.day = year + '-' + month + '-' + day
+      console.log(this.day)
+      console.log(this.datas[1]['hiduke'])
+      for (let i in this.datas) {
+        if (this.datas[i]['hiduke'] === this.day) {
+          this.newdata.push({
+            id: i,
+            nittei: this.datas[i]['nittei'],
+            naiyou: this.datas[i]['naiyou']
+          })
+        }
+      }
+    },
+    lastmonth: function (e) {
+      this.newdata = []
+      let today = new Date()
+      this.month--
+      today.setDate(today.getDate() + this.date)
+      today.setMonth(today.getMonth() + this.month)
+      let year = today.getFullYear()
+      let month = ('0' + (today.getMonth() + 1)).slice(-2)
+      let day = ('0' + today.getDate()).slice(-2)
+      this.day = year + '-' + month + '-' + day
+      for (let i in this.datas) {
+        if (this.datas[i]['hiduke'] === this.day) {
+          this.newdata.push({
+            id: i,
+            nittei: this.datas[i]['nittei'],
+            naiyou: this.datas[i]['naiyou']
+          })
+        }
+      }
     }
   }
 }
@@ -122,13 +167,30 @@ export default {
         transform: translateY(-50%)
     }
     .sankaku2{position:absolute;
-        left: 15%;
+        left: 25%;
         top: 50%;
-        transform: translateY(-50%)}
+        transform: translateY(-50%);
+        height: 20px;
+    }
+
     .sankaku1{position:absolute;
-        right: 15%;
+        right: 25%;
         top: 50%;
-        transform: translateY(-50%)
+        transform: translateY(-50%);
+        height: 20px;
+    }
+    .sankaku4{position:absolute;
+        left: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 20px;
+    }
+
+    .sankaku3{position:absolute;
+        right: 10%;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 20px;
     }
     table, th, td {
         border-spacing: 0 10px;
