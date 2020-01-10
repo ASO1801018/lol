@@ -49,7 +49,6 @@ export default {
             return response.json()
           })
           .then(function (data) {
-            console.log('fefiaweofhowefhwiaej')
             console.log(data)
             username.username = data['data'][0]['student_name']
             // let obj = JSON.parse(data)
@@ -58,7 +57,9 @@ export default {
       })
       .catch(function (error) {
         // $("#span1").text("データを取得できませんでした");
+        console.log('ここに入ったよ')
         console.log(error)
+        window.location.href = 'http://localhost:8080/'
       })
     console.log('test')
   }
