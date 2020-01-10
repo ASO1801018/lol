@@ -10,6 +10,7 @@ import calendar from '@/components/calendar'
 import briefingadd from '@/components/briefing_add'
 import Briefing from '@/components/Briefing'
 import Details from '@/components/Details'
+import ProofReading from '@/components/ProofReading'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -60,6 +61,11 @@ export default new Router({
       path: '/',
       name: 'signinslack',
       component: signinslack
+    },
+    {
+      path: '/ProofReading',
+      name: 'ProofReading',
+      component: ProofReading
     }
 
   ]
